@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak Kami - MinimartPlus</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="page-loader"></div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Kontak Kami</h1>
+        <p>Hubungi kami untuk informasi lebih lanjut</p>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Alamat</h3>
+            <p>Jl. Contoh Alamat No. 123<br />Jakarta Selatan 12345</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Telepon</h3>
+            <p>(021) 1234-5678<br />0812-3456-7890</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>info@minimartplus.com<br />cs@minimartplus.com</p>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">⏰</div>
+            <h3>Jam Operasional</h3>
+            <p>Senin - Minggu: 06:00 - 22:00<br />Tanggal Merah: Buka</p>
+          </div>
+        </div>
+
+        <div class="contact-form-section">
+          <h2>Kirim Pesan</h2>
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telepon</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subjek</label>
+              <input type="text" id="subject" name="subject" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Pesan</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="page-loader.js"></script>
+    <script>
+      // Load header and footer
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+
+      // Form submission
+      document
+        .querySelector(".contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Terima kasih! Pesan Anda telah dikirim.");
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

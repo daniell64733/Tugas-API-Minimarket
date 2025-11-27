@@ -1,0 +1,109 @@
+<header class="bg-white shadow-md sticky top-0 z-40">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-4">
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors"
+        >
+          TokoKu
+        </a>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="hidden md:flex space-x-8">
+        <a
+          href="index.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Beranda</a
+        >
+        <a
+          href="tentang.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Tentang</a
+        >
+        <a
+          href="kontak.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Kontak</a
+        >
+        <a
+          href="alamat.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Alamat</a
+        >
+      </nav>
+
+      <!-- Cart & Actions -->
+      <div class="flex items-center space-x-4">
+        <!-- Search Button -->
+        <button class="p-2 text-gray-600 hover:text-blue-600 transition-colors">
+          <i class="fas fa-search"></i>
+        </button>
+
+        <!-- Cart -->
+        <div class="relative">
+          <button
+            class="p-2 text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <span
+            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+          >
+            0
+          </span>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="md:hidden p-2 text-gray-600 hover:text-blue-600 transition-colors"
+          id="mobile-menu-button"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden mt-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-4">
+        <a
+          href="index.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Beranda</a
+        >
+        <a
+          href="tentang.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Tentang</a
+        >
+        <a
+          href="kontak.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Kontak</a
+        >
+        <a
+          href="alamat.html"
+          class="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+          >Alamat</a
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
+  });
+</script>

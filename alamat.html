@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alamat - MinimartPlus</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="page-loader"></div>
+
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Lokasi & Alamat</h1>
+        <p>Temukan toko MinimartPlus terdekat di kota Anda</p>
+      </div>
+
+      <div class="address-content">
+        <div class="store-locations">
+          <h2>Cabang Kami</h2>
+          <div class="location-list">
+            <div class="location-card" data-lat="-6.2088" data-lng="106.8456">
+              <h3>MinimartPlus Jakarta Pusat</h3>
+              <p>📍 Jl. Thamrin No. 10, Jakarta Pusat</p>
+              <p>📞 (021) 1234-5678</p>
+              <p>⏰ 06:00 - 22:00</p>
+            </div>
+
+            <div class="location-card" data-lat="-6.9147" data-lng="107.6098">
+              <h3>MinimartPlus Bandung</h3>
+              <p>📍 Jl. Asia Afrika No. 25, Bandung</p>
+              <p>📞 (022) 8765-4321</p>
+              <p>⏰ 06:00 - 22:00</p>
+            </div>
+
+            <div class="location-card" data-lat="-7.2504" data-lng="112.7688">
+              <h3>MinimartPlus Surabaya</h3>
+              <p>📍 Jl. Tunjungan No. 15, Surabaya</p>
+              <p>📞 (031) 5555-8888</p>
+              <p>⏰ 06:00 - 22:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <div id="store-map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="page-loader.js"></script>
+    <script>
+      // Load header and footer
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+        });
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+
+      // Initialize map
+      let storeMap;
+      let markers = [];
+
+      function initMap() {
+        storeMap = L.map("store-map").setView([-6.2088, 106.8456], 5);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "© OpenStreetMap contributors",
+        }).addTo(storeMap);
+
+        // Add markers for each store
+        document.querySelectorAll(".location-card").forEach((card) => {
+          const lat = parseFloat(card.dataset.lat);
+          const lng = parseFloat(card.dataset.lng);
+          const title = card.querySelector("h3").textContent;
+
+          const marker = L.marker([lat, lng]).addTo(storeMap).bindPopup(title);
+
+          markers.push(marker);
+
+          // Click event for location cards
+          card.addEventListener("click", function () {
+            storeMap.setView([lat, lng], 13);
+            marker.openPopup();
+          });
+        });
+      }
+
+      // Initialize map when page loads
+      document.addEventListener("DOMContentLoaded", initMap);
+    </script>
+  </body>
+</html>
